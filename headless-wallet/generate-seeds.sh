@@ -11,7 +11,7 @@ declare lastElement=${wallets[-1]}
 
 declare allKeys=$1
 declare appKey=${wallets[0]}
-declare usersKeys=${wallets[@]/$appKey}
+declare usersKeys=${allKeys#*,}
 
 echo "{" > raw_seeds
 ## now loop through the above array
@@ -40,18 +40,18 @@ echo "Keys parameters ${HTR_WALLETS_PARAM_NAME} contents:"
 aws ssm get-parameter --name ${HTR_WALLETS_PARAM_NAME}
 
 # App key param
-aws ssm put-parameter --name ${WALLET_APP_KEY_NAME} --value ${appKey} --type "String" --overwrite
-echo "Keys parameter ${WALLET_APP_KEY_NAME} created..."
+aws ssm put-parameter --name ${HTR_WALLET_APP_KEY_NAME} --value ${appKey} --type "String" --overwrite
+echo "Keys parameter ${HTR_WALLET_APP_KEY_NAME} created..."
 
-echo "Keys parameters ${WALLET_APP_KEY_NAME} contents:"
-aws ssm get-parameter --name ${WALLET_APP_KEY_NAME}
+echo "Keys parameters ${HTR_WALLET_APP_KEY_NAME} contents:"
+aws ssm get-parameter --name ${HTR_WALLET_APP_KEY_NAME}
 
 # Users keys param
-aws ssm put-parameter --name ${WALLET_USERS_KEYS_NAME} --value ${usersKeys} --type "String" --overwrite
-echo "Keys parameter ${WALLET_USERS_KEYS_NAME} created..."
+aws ssm put-parameter --name ${HTR_WALLET_USERS_KEYS_NAME} --value "${usersKeys}" --type "String" --overwrite
+echo "Keys parameter ${HTR_WALLET_USERS_KEYS_NAME} created..."
 
-echo "Keys parameters ${WALLET_USERS_KEYS_NAME} contents:"
-aws ssm get-parameter --name ${WALLET_USERS_KEYS_NAME}
+echo "Keys parameters ${HTR_WALLET_USERS_KEYS_NAME} contents:"
+aws ssm get-parameter --name ${HTR_WALLET_USERS_KEYS_NAME}
 
 # Seed Secret
 aws secretsmanager create-secret --name ${HTR_WALLETS_SECRET_NAME} --secret-string "`cat ./raw_seeds`"
