@@ -8,17 +8,31 @@
         "collect_list": [
           {
             "file_path": "/home/ec2-user/logs/headless-wallet-startup.log",
-            "log_group_name": "hc-acc-headless-wallet",
+            "log_group_name": "hc-acc-headless-wallet-hathor",
             "log_stream_name": "startup_{instance_id}"
           },
           {
             "file_path": "/home/ec2-user/logs/headless-wallet-install.log",
-            "log_group_name": "hc-acc-headless-wallet",
+            "log_group_name": "hc-acc-headless-wallet-hathor",
             "log_stream_name": "install_{instance_id}"
           },
           {
             "file_path": "/home/ec2-user/logs/headless-wallet.log",
-            "log_group_name": "hc-acc-headless-wallet",
+            "log_group_name": "hc-acc-headless-wallet-hathor",
+            "log_stream_name": "log_{instance_id}"
+          },          {
+            "file_path": "/home/ec2-user/logs/matic-wallet-startup.log",
+            "log_group_name": "hc-acc-headless-wallet-matic",
+            "log_stream_name": "startup_{instance_id}"
+          },
+          {
+            "file_path": "/home/ec2-user/logs/matic-wallet-install.log",
+            "log_group_name": "hc-acc-headless-wallet-matic",
+            "log_stream_name": "install_{instance_id}"
+          },
+          {
+            "file_path": "/home/ec2-user/logs/polygon-headless-wallet.log",
+            "log_group_name": "hc-acc-headless-wallet-matic",
             "log_stream_name": "log_{instance_id}"
           }
         ]
